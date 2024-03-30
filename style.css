@@ -1,0 +1,184 @@
+body{
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif, Arial;
+    height: 100svh;
+    width: 100svw;
+}
+
+.container{
+    height: 100svh;
+    width: 100svw;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    justify-content: center;
+    align-items: center;
+}
+.container #displayText{
+    text-align: center;
+}
+.container > #displayText::selection{
+    background: transparent;
+}
+body label{
+    position:fixed;
+    top: 1em;
+    left: 5vw;
+    z-index: 1;
+    padding: 1em 1.2em;
+    transition: all .5s;
+    border-radius: 5px;
+}
+body label:hover{
+    color: aliceblue;
+    background: rgb(82, 107, 218);
+    box-shadow: 0 0 0 5px rgb(197, 207, 250);
+}
+.container label{
+    position:fixed;
+    top: 1em;
+    left: calc(25svw - 1.5em);
+    padding: 1em 1.2em;
+    transition: all .5s;
+    border-radius: 5px;
+}
+.container label:hover{
+    background: rgb(253, 92, 92);
+    box-shadow: 0 0 0 5px rgb(255, 228, 228);
+}
+#minimaze-toogle{
+    /* appearance: none; */
+    position: fixed;
+    display: none;
+}
+#minimaze-toogle:checked ~ .container{
+    grid-template-columns: 1fr;
+}
+#minimaze-toogle:checked ~ .container #input-container{
+    display: none;
+}
+
+#input-container{
+    width: 25svw;
+    height: 98svh;
+    padding: 0 1em;
+
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-rows: 3fr .5fr .5fr;
+    
+    border: 1px solid white;
+    background: #fefefe ;
+    box-shadow: 0 0 2em 0 rgb(184, 184, 184);
+    border-radius: 1em;
+
+    z-index: 2;
+}
+
+.container #input-container #list-tasks{
+    margin: .5em 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+.container #input-container #list-tasks p{
+    margin: .1em;
+}
+.container #input-container #list-tasks p button{
+    margin: .1em;
+    border: none;
+    outline: none;
+    color:darkred;
+    background: indianred;
+    cursor: pointer;
+}
+
+#addTasks{
+    behavior: none;
+    -ms-behavior: none;
+    
+    width: calc(99% - 1em);
+    padding: .5em;
+    font-size: 1rem;
+    border-radius: .5em;
+    border: none;
+    outline: 3px rgb(124, 124, 124) solid;
+    margin: .5em 0;
+}
+#addTasks:focus{
+    outline: rgb(107, 107, 230) 5px solid;
+}
+#btn-addTasks:active,
+#btn-addTasks{
+    width: 100%;
+    outline: none;
+    border: none;
+    padding: .5em;
+    margin: .5em 0;
+    font-size: 1rem;
+    border-radius: .5em;
+    cursor: pointer;
+    color: dimgray;
+    transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+#addTasks:focus-visible ~ #btn-addTasks,
+#btn-addTasks:focus,
+#btn-addTasks:hover{
+    background: rgb(107, 107, 230) ;
+    color: whitesmoke;
+    box-shadow: 0 0 0 .2em rgb(147, 147, 229);
+    outline: none;
+    border: none;
+}
+
+@media (width <= 1024px){
+    .container label{
+        left: calc(25svw - 1.5em);
+    }
+    #addTasks{
+        padding: 0.5em;
+        font-size: 1em;
+        border-radius: .5em;
+        margin: 0.5em 0;
+        width: calc(100% - 1em);
+        outline: 2px rgb(124, 124, 124) solid;
+    }
+    #addTasks:focus{
+        outline: 2px rgb(107, 107, 230) solid;
+    }
+    #btn-addTasks:active,
+    #btn-addTasks{
+        font-size: 1rem;
+        border-radius: .5em;
+        padding: 0.5em;
+        margin: 0.5em 0;
+    }
+}
+
+@media (width <= 800px){
+    body label{
+        font-size: 1em;
+    }
+    .container{
+        grid-template-columns: 1fr;
+    }
+    .container label{
+        left: 3em;
+    }
+    #input-container{
+        position: fixed;
+        z-index: 2;
+        border-radius: 0;
+        padding: 1em;
+        width: calc(100svw - 1em);
+        height: calc(100svh - 1em);
+        top: 0;
+        left: 0;
+    }
+    #input-container #actions{
+        width: calc(100svw - 5em);
+        display: grid;
+        gap :1em;
+        grid-template-columns: 2fr 1fr;
+    }
+}
