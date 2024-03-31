@@ -274,5 +274,19 @@ button#btn-addTasks.active,
         display: grid;
         gap :1em;
         grid-template-columns: 2fr 1fr;
+        grid-template-rows: 1fr;
+    }
+    #actions-pop-up p{
+        font-size: 1rem;
     }
 }
+
+@media (width <= 500px){
+    #input-container #actions{
+        width: calc(100svw - 3em);
+        display: grid;
+        gap :0;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+} 
