@@ -1,134 +1,225 @@
-body{
-    padding: 0;
-    margin: 0;
-    font-family: sans-serif, Arial;
-    height: 100svh;
-    width: 100svw;
+:root{
+    --danger        : #E57373;
+    --dangerSha     : #FFEBEE;
+    --info          : #4FC3F7;
+    --infoSha       : #E1F5FE;
+    --succed        : #AED581;
+    --succedSha     : #F1F8E9;
+
+    --fontWhite     : #f0f8ff;
+    --danger50      : rgba(253, 92, 92, .50);
+    --dangerSha50   : rgba(255, 228, 228, .50);
+    --info50        : rgba(82, 107, 218, 0.50);
+    --infoSha50     :   rgba(197, 207, 250, 0.50)
 }
 
-.container{
-    height: 100svh;
-    width: 100svw;
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    justify-content: center;
-    align-items: center;
+body{
+    padding     : 0;
+    margin      : 0;
+    height      : 100svh;
+    width       : 100svw;
+    font-family : sans-serif, Arial;
 }
-.container #displayText{
-    text-align: center;
-}
-.container > #displayText::selection{
-    background: transparent;
-}
+
+
+
+/* Toogle Click */
 body label{
-    position:fixed;
-    top: 1em;
-    left: 5vw;
-    z-index: 1;
-    padding: 1em 1.2em;
-    transition: all .5s;
+    position     : fixed;
+    top          : 1em;
+    left         : 5vw;
+
+    z-index      : 1;
+
+    padding      : 1em 1.2em;
     border-radius: 5px;
+
+    transition   : all .5s;
 }
 body label:hover{
-    color: aliceblue;
-    background: rgb(82, 107, 218);
-    box-shadow: 0 0 0 5px rgb(197, 207, 250);
+    color     : var(--fontWhite);
+    background: var(--info);
+    box-shadow: 0 0 0 5px var(--infoSha);
 }
 .container label{
-    position:fixed;
-    top: 1em;
-    left: calc(25svw - 1.5em);
-    padding: 1em 1.2em;
-    transition: all .5s;
+    position     : fixed;
+    top          : 1em;
+    left         : calc(25svw - 1.5em);
+    padding      : 1em 1.2em;
+    transition   : all .5s;
     border-radius: 5px;
 }
 .container label:hover{
-    background: rgb(253, 92, 92);
-    box-shadow: 0 0 0 5px rgb(255, 228, 228);
+    background: var(--danger);
+    box-shadow: 0 0 0 5px var(--dangerSha) ;
 }
 #minimaze-toogle{
     /* appearance: none; */
-    position: fixed;
-    display: none;
+    position     : fixed;
+    display      : none;
 }
-#minimaze-toogle:checked ~ .container{
-    grid-template-columns: 1fr;
+#minimaze-toogle:checked ~ .container{grid-template-columns: 1fr;}
+#minimaze-toogle:checked ~ .container #input-container{display: none;}
+
+
+/* Tab Input */
+
+.container{
+    display              : grid;
+    justify-content      : center;
+    align-items          : center;
+    grid-template-columns: 1fr 2fr;
+
+    height               : 100svh;
+    width                : 100svw;
 }
-#minimaze-toogle:checked ~ .container #input-container{
-    display: none;
-}
+.container #displayText{text-align: center;}
+.container > #displayText::selection{background: transparent;}
 
 #input-container{
-    width: 25svw;
-    height: 98svh;
-    padding: 0 1em;
+    display           : grid;
+    justify-content   : center;
+    align-items       : center;
 
-    display: grid;
-    justify-content: center;
-    align-items: center;
+    width             : 25svw;
+    height            : 98svh;
+    padding           : 0 1em;
+    border-radius     : 1em;
     grid-template-rows: 3fr .5fr .5fr;
-    
-    border: 1px solid white;
-    background: #fefefe ;
-    box-shadow: 0 0 2em 0 rgb(184, 184, 184);
-    border-radius: 1em;
 
-    z-index: 2;
+    background        : #fefefe ;
+    border            : 1px solid white;
+    box-shadow        : 0 0 2em 0 rgb(184, 184, 184);
+
+    z-index           : 2;
 }
 
 .container #input-container #list-tasks{
-    margin: .5em 0;
-    display: grid;
+    margin               : .5em 0;
+    display              : grid;
     grid-template-columns: repeat(2, 1fr);
 }
-.container #input-container #list-tasks p{
-    margin: .1em;
-}
+.container #input-container #list-tasks p{margin: .1em;}
 .container #input-container #list-tasks p button{
-    margin: .1em;
-    border: none;
-    outline: none;
-    color:darkred;
+    margin    : .1em;
+    
+    color     : darkred;
     background: indianred;
-    cursor: pointer;
+    
+    outline   : none;
+    border    : none;
+    cursor    : pointer;
 }
 
+/* Input Tasks */
 #addTasks{
-    behavior: none;
-    -ms-behavior: none;
-    
-    width: calc(99% - 1em);
-    padding: .5em;
-    font-size: 1rem;
+    width        : calc(99% - 1em);
+    padding      : .5em;
+    font-size    : 1rem;
     border-radius: .5em;
-    border: none;
-    outline: 3px rgb(124, 124, 124) solid;
-    margin: .5em 0;
+    margin       : .5em 0;
+    outline      : 3px rgb(124, 124, 124) solid;
+    border       : none;
 }
-#addTasks:focus{
-    outline: rgb(107, 107, 230) 5px solid;
-}
+#addTasks:focus{outline: rgb(107, 107, 230) 5px solid;}
+
 #btn-addTasks:active,
 #btn-addTasks{
-    width: 100%;
-    outline: none;
-    border: none;
-    padding: .5em;
-    margin: .5em 0;
-    font-size: 1rem;
+    width        : 100%;
+    padding      : .5em;
+    margin       : .5em 0;
+    font-size    : 1rem;
     border-radius: .5em;
-    cursor: pointer;
-    color: dimgray;
-    transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    color        : dimgray;
+
+    outline      : none;
+    border       : none;
+    cursor       : pointer;
+    transition   : all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
+button#btn-addTasks.active,
 #addTasks:focus-visible ~ #btn-addTasks,
 #btn-addTasks:focus,
 #btn-addTasks:hover{
-    background: rgb(107, 107, 230) ;
-    color: whitesmoke;
     box-shadow: 0 0 0 .2em rgb(147, 147, 229);
-    outline: none;
-    border: none;
+    background: rgb(107, 107, 230) ;
+    color     : whitesmoke;
+
+    outline   : none;
+    border    : none;
+}
+
+/* Notifikasi Pop Up */
+#actions-pop-up{
+    position        : absolute;
+    top             : 0%;
+    left            : 50%;
+    transform       : translate(-50%, 0%);  
+    
+    /* width        : 100svw;
+    height          : 100svh; */
+    /* padding      : 1em; */
+    /* border       : 1px solid black; */
+    /* background   : #fefefe ; */
+    /* box-shadow   : 0 0 2em 0 rgb(184, 184, 184); */
+    /* border-radius: 1em; */
+
+    z-index         : 2;
+
+    display         : flex;
+    flex-direction  : column;
+    align-items     : center;
+    overflow        : scroll;
+}
+#actions-pop-up p{
+    display              : grid;
+    grid-template-columns: 1fr 5fr;
+    gap                  : 1em;
+    align-items          : center;
+    justify-content      : center;
+
+    color                : aliceblue;
+
+    width                : calc(100vw - 10em);
+    font-size            : 1.5rem;
+    /* border-radius     : 10px; */
+    margin               : .3em 1em;
+
+    transition           : all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+#actions-pop-up p button{
+    padding  : 1em;
+    font-size: 1rem;
+    height   : 100%;
+    margin   : .2em 0;
+    width    : 100%;
+
+    border   : none;
+    outline  : none;
+    cursor   : pointer;
+
+}
+#actions-pop-up p#info{
+    background: var(--info);
+}
+#actions-pop-up p#info > button{
+    background: var(--infoSha);
+    color: var(--info);
+}
+#actions-pop-up p#danger{
+    background: var(--danger);
+}
+#actions-pop-up p#danger > button{
+    background: var(--dangerSha);
+    color: var(--danger);
+}
+#actions-pop-up p#succed{
+    background: var(--succed);
+}
+#actions-pop-up p#succed > button{
+    background: var(--succedSha);
+    color: var(--succed);
 }
 
 @media (width <= 1024px){
@@ -155,7 +246,7 @@ body label:hover{
     }
 }
 
-@media (width <= 800px){
+@media (width <= 768px){
     body label{
         font-size: 1em;
     }
@@ -163,7 +254,10 @@ body label:hover{
         grid-template-columns: 1fr;
     }
     .container label{
-        left: 3em;
+        left: 5vw;
+        color: aliceblue;
+        background: var(--danger50);
+        box-shadow: 0 0 0 5px var(--dangerSha50);
     }
     #input-container{
         position: fixed;
